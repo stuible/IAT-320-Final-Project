@@ -7,6 +7,9 @@
 #include "Transmit.h"
 #include "Display.h" // Custom Display class
 
+Transmit transmit;
+Display display;
+
 int objectChannel = 5;
 int baseChannel = 1;
 
@@ -16,14 +19,23 @@ Adafruit_LSM303_Accel_Unified accel = Adafruit_LSM303_Accel_Unified(54321);
 float prevX = 0;
 float prevY = 0;
 
-bool completedActionY = false;
+// Songs that user can switch between
+int songIndex = 0;
+String songs[] = {
+    "blink182 - I Miss U",
+    "Lil Pump - Gucci Gang",
+    "Oasis - Wonderwall"
+    };
 
-Transmit transmit;
-Display display;
+bool completedActionY = false;
 
 void setup() {
   Serial.begin(9600);
   display.begin();
+
+  // Set display to initial song (first song)
+  display.setSong(songs[songIndex]);
+  
   transmit = Transmit(objectChannel, baseChannel);
   // print out the details of the radio's configuration (useful for debug)
   // Initialise the acc sensor
@@ -52,19 +64,29 @@ void loop() {
   float currY = event.acceleration.y;
 
   // If current Y acceleration has crossed "5" for the first time, next song
-  if (currY >= 5 && prevY < 5)
+  // Only register action if this is the first gesture recognized
+  if (currY >= 5 && prevY < 5 && !completedActionY)
   {
-    // Only register action if this is the first gesture recognized
-    if (!completedActionY) transmit.send("track", "next");
+    
+    songIndex = songIndex < 2 ? songIndex +=1 : songIndex = 0;
+    display.setSong(songs[songIndex]);
+    
+//    transmit.send("track", "next");
+    transmit.send("track", songIndex);
+    
     // Set action as already complete
     completedActionY = true;
   }
 
   // If current Y acceleration has crossed "-5" for the first time, previous song
-  if (currY >= -5 && prevY < -5)
+  // Only register action if this is the first gesture recognized
+  if (currY >= -5 && prevY < -5 && !completedActionY)
   {
-    // Only register action if this is the first gesture recognized
-    if (!completedActionY) transmit.send("track", "previous");
+    songIndex = songIndex > 0 ? songIndex -= 1 : songIndex = 2;
+    display.setSong(songs[songIndex]);
+    
+    transmit.send("track", songIndex);
+    //    transmit.send("track", "prev");
     // Set action as already complete
     completedActionY = true;
   }
