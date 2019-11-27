@@ -86,15 +86,6 @@ void Transmit::receive() {
     else
     {
 
-      //      JsonObject& json = jsonBuffer.parseObject(payload);
-      //      if (root.containsKey("active")) {
-      //        Serial.println("Found active");
-      //      }
-      //      if (root.containsKey("fuck")) {
-      //        Serial.println("Found fuck");
-      //      }
-
-
       //      // check to see if the platform thinks this object should be active
       String activeJSON = jsonBuffer["active"];
 
