@@ -20,3 +20,7 @@ void setupSound() {
 void playSound() {
   currentSound.play();
 }
+
+void stopSound() {
+  currentSound.stop();
+}

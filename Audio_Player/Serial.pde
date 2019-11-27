@@ -70,6 +70,19 @@ void updateSerial() {
               }
             }
 
+            if (json.hasKey("track")) {
+              Object volObj = json.get("track");
+              if (volObj instanceof Number) {
+                int newSongIndex = (int) volObj;
+                if (activeObject == objects.get("phone")) {
+                  setPhoneSong(newSongIndex);
+                }
+              }
+              if (volObj instanceof String) {
+                //setVolume((Float)volObj);
+              }
+            }
+
             if (json.hasKey("activeObject")) {
               changeObject(json.getInt("activeObject"));
               println("Active Object Changed to: " + activeObject);

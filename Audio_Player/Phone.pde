@@ -11,6 +11,7 @@ void setupPhone() {
 }
 
 void loadPhoneSong() {
+  stopSound();
   currentSound = phoneSongs[currentPhoneSong];
   playSound();
 }
