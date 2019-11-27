@@ -2,7 +2,7 @@
 
 // Initialize Constructor
 Transmit::Transmit() {
-  Serial.println("Initialize");
+//  Serial.println("Initialize");
 }
 
 // Instantiate Constructor
@@ -13,6 +13,7 @@ Transmit::Transmit(int _channel, int _destination, RF24_G _radio) {
 }
 
 void Transmit::sendRaw(String key, String value) {
+//  Serial.print("/*");
 
   //30 character char array (Fixed packet size for Radio)
   char message[30] = "                              ";
@@ -42,6 +43,7 @@ void Transmit::sendRaw(String key, String value) {
   // print out the original payload
   // send the packet, if it is successful try to read back the packet
   if (radio.write(&sender) == true) {}
+//  Serial.print("*/");
 }
 
 void Transmit::send(String key, String value) {
