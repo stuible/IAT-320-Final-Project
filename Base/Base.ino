@@ -15,20 +15,23 @@ const int PORTABLE_RADIO_INDEX = 1;
 const int MP3_PLAYER_INDEX = 2;
 const int PHONE_INDEX = 3;
 
-int activeObjectIndex = 3;
+int activeObjectIndex = 2;
 
 
 void setup() {
-  Serial.begin(9600);
+  
   // create the RF24G object with an address of 4, using pins 7 and 8
   radio = RF24_G(BASE_RADIO_CHANNEL, 9, 10);
 
   // Instantiate Objects
+  
   objects[0] = Gadget(base.getAddressFromIndex(OLD_SCHOOL_RADIO_INDEX), A0, radio);  // Old School Radio
   objects[1] = Gadget(base.getAddressFromIndex(PORTABLE_RADIO_INDEX), A1, radio);  // Portable Radio
   objects[2] = Gadget(base.getAddressFromIndex(MP3_PLAYER_INDEX), A2, radio);  // MP3 Player
   objects[3] = Gadget(base.getAddressFromIndex(PHONE_INDEX), A3, radio);   // Phone
-
+  
+  Serial.begin(9600);
+  
   objects[activeObjectIndex].isActive(true);
   base.sendToComputer("activeObject", activeObjectIndex);
 }
