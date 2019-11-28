@@ -12,7 +12,7 @@ const int volumePin = A0;
 const int AMFMPin =  A1;
 
 int prevVolume = 0;
-int prevAM;
+bool prevAM;
 
 //350 - 1023
 
@@ -30,7 +30,7 @@ void loop() {
   //  transmit.send("track", "next");
 
   int volume = analogRead(volumePin);
-  int AM = analogRead(AMFMPin) > 500 ? true : false;
+  bool AM = analogRead(AMFMPin) > 500 ? true : false;
 
   if (abs(abs(prevVolume) - abs(volume)) > 25) {
     //    Serial.println("cahnged enough");

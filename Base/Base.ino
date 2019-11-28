@@ -79,12 +79,12 @@ void loop() {
   int nextObjectIndex = activeObjectIndex + 1;
 
   //  Serial.println("");Serial.println("");Serial.println("");Serial.println("");Serial.println("");Serial.println("");
-  //  Serial.println("----------------------");
-  //  Serial.println("activeObjectIndex: " + (String)activeObjectIndex);
-  //  Serial.println(objects[activeObjectIndex].isDetected());
-  //  Serial.println(objects[activeObjectIndex].active);
-  //  Serial.println(objects[activeObjectIndex].pickedUp);
-  //  Serial.println("----------------------");
+//    Serial.println("----------------------");
+//    Serial.println("activeObjectIndex: " + (String)activeObjectIndex);
+//    Serial.println(objects[activeObjectIndex].isDetected());
+//    Serial.println(objects[activeObjectIndex].isActive());
+//    Serial.println(objects[activeObjectIndex].isPickedUp());
+//    Serial.println("----------------------");
 
   // Detect if Active object has been put down
   if (objects[activeObjectIndex].isDetected()

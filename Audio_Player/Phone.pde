@@ -6,8 +6,11 @@ void setupPhone() {
 
   phoneSongs = new SoundFile[3];
   phoneSongs[0] = new SoundFile(this, "guccigang.mp3");
+  println("loaded guccigang");
   phoneSongs[1] = new SoundFile(this, "imissyou.mp3");
+  println("loaded imissyou");
   phoneSongs[2] = new SoundFile(this, "wonderwall.mp3");
+  println("loaded wonderwall");
 }
 
 void loadPhoneSong() {

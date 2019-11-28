@@ -51,9 +51,9 @@ void Transmit::send(String key, int value) {
 void Transmit::send(String key, float value) {
   sendRaw(key, (String) value);
 }
-//void Transmit::send(String key, bool value) {
-//  sendRaw(key, value ? "true" : "false");
-//}
+void Transmit::send(String key, bool value) {
+  sendRaw(key, value ? "true" : "false");
+}
 
 void Transmit::receive() {
   // declare packet variable

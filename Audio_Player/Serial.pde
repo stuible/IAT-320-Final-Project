@@ -9,7 +9,7 @@ void setupSerial() {
   try {
     //Open USB Serial Port
     printArray(Serial.list()); 
-    serial = new Serial(this, Serial.list()[5], 9600);
+    serial = new Serial(this, Serial.list()[13], 9600);
     println("OPENING PORT");
   }
   catch(Exception e) {
@@ -63,8 +63,11 @@ void updateSerial() {
             if (json.hasKey("vol")) {
               Object volObj = json.get("vol");
               if (volObj instanceof Number) {
-                setVolume(((Double) volObj).floatValue());
+                setVolume(((Number)volObj).floatValue());
               }
+              //if (volObj instanceof Integer) {
+              //  setVolume(((float) volObj));
+              //}
               if (volObj instanceof String) {
                 //setVolume((Float)volObj);
               }
@@ -80,6 +83,13 @@ void updateSerial() {
               }
               if (volObj instanceof String) {
                 //setVolume((Float)volObj);
+              }
+            }
+            
+            if (json.hasKey("AM")) {
+              boolean AM = json.getBoolean("AM");
+              if (AM) {
+  
               }
             }
 
