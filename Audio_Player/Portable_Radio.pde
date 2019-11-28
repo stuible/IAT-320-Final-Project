@@ -6,9 +6,9 @@ boolean portableRadioAM = true;
 void setupPortableRadio() {
   objects.put("portableRadio", 1);
   
-  radioSongAM = new SoundFile(this, "surfinusa.mp3");
-  //radioSongAM = new SoundFile(this, "jfk.mp3");
-  //println("loaded jfk");
+  //radioSongAM = new SoundFile(this, "surfinusa.mp3");
+  radioSongAM = new SoundFile(this, "jfk.mp3");
+  println("loaded jfk");
   radioSongFM = new SoundFile(this, "surfinusa.mp3");
   println("loaded surfinusa");
 }

@@ -4,13 +4,15 @@ int currentPhoneSong = 0;
 void setupPhone() {
   objects.put("phone", 3);
 
-  phoneSongs = new SoundFile[3];
-  phoneSongs[0] = new SoundFile(this, "guccigang.mp3");
-  println("loaded guccigang");
-  phoneSongs[1] = new SoundFile(this, "imissyou.mp3");
-  println("loaded imissyou");
-  phoneSongs[2] = new SoundFile(this, "wonderwall.mp3");
-  println("loaded wonderwall");
+  phoneSongs = new SoundFile[4];
+  phoneSongs[0] = new SoundFile(this, "walk.mp3");
+  println("loaded walk");
+  phoneSongs[1] = new SoundFile(this, "luciddreams.mp3");
+  println("loaded luciddreams");
+  phoneSongs[2] = new SoundFile(this, "ad.mp3");
+  println("loaded ad");
+  phoneSongs[2] = new SoundFile(this, "panda.mp3");
+  println("loaded panda");
 }
 
 void loadPhoneSong() {

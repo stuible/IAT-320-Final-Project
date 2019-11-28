@@ -44,9 +44,9 @@ void changeSound(SoundFile sound) {
 }
 
 void volumeUp(){
-setVolume(volume + 20);
+if(volume <= 80) setVolume(volume + 20);
 }
 
 void volumeDown(){
-setVolume(volume - 20);
+if(volume >= 20) setVolume(volume - 20);
 }

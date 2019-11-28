@@ -26,15 +26,26 @@ void changeObject(int index) {
   activeObject = index;
 
   if (activeObject == objects.get("oldschoolRadio")) {
-     loadOldschoolRadioSong();
-  }
-  else if (activeObject == objects.get("portableRadio")) {
+    loadOldschoolRadioSong();
+  } else if (activeObject == objects.get("portableRadio")) {
     loadPortableRadioSong();
-  }
-  else if (activeObject == objects.get("MP3Player")) {
+  } else if (activeObject == objects.get("MP3Player")) {
+    radioSongAM.stop();
+    radioSongFM.stop();
     loadmp3PlayerSong();
-  }
-  else if (activeObject == objects.get("phone")) {
+  } else if (activeObject == objects.get("phone")) {
     loadPhoneSong();
+  } else if (activeObject == -1) {
+    println("SHOULD EBE STOPPING ALL AUDIO");
+    //if (radioSongAM != null) radioSongAM.stop();
+    //if (radioSongFM != null) radioSongFM.stop();
+    //stopSound();
+
+    setupOldschoolRadio();
+    setupPortableRadio();
+    setupMP3Player();
+    setupPhone();
+
+    setupSound();
   }
 }

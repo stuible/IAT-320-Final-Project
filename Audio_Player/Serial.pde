@@ -9,7 +9,7 @@ void setupSerial() {
   try {
     //Open USB Serial Port
     printArray(Serial.list()); 
-    serial = new Serial(this, Serial.list()[15], 9600);
+    serial = new Serial(this, Serial.list()[14], 9600);
     println("OPENING PORT");
   }
   catch(Exception e) {

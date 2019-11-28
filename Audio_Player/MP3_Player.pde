@@ -1,5 +1,5 @@
 SoundFile[] mp3PlayerSongs;
-int currentmp3PlayerSong = 0;
+int currentmp3PlayerSong = 1;
 int songCount = 3;
 
 void setupMP3Player() {

@@ -6,6 +6,8 @@
 
 Adafruit_NeoPixel strip;
 
+// object1: 24 (0-23) object2: 13 (24-37) object3: 15 (38-52) object4: 17 (53-69)
+
 Base base;
 RF24_G radio;
 
@@ -35,10 +37,10 @@ void setup() {
   radio = RF24_G(BASE_RADIO_CHANNEL, 9, 10);
 
   // Instantiate Objects
-  objects[0] = Gadget(base.getAddressFromIndex(OLD_SCHOOL_RADIO_INDEX), A0, 0, 9, radio);  // Old School Radio
-  objects[1] = Gadget(base.getAddressFromIndex(PORTABLE_RADIO_INDEX), A1, 10, 19, radio);  // Portable Radio
-  objects[2] = Gadget(base.getAddressFromIndex(MP3_PLAYER_INDEX), A2, 20, 29, radio);  // MP3 Player
-  objects[3] = Gadget(base.getAddressFromIndex(PHONE_INDEX), A3, 30, 39, radio);   // Phone
+  objects[0] = Gadget(base.getAddressFromIndex(OLD_SCHOOL_RADIO_INDEX), A0, 0, 23, radio);  // Old School Radio
+  objects[1] = Gadget(base.getAddressFromIndex(PORTABLE_RADIO_INDEX), A1, 24, 37, radio);  // Portable Radio
+  objects[2] = Gadget(base.getAddressFromIndex(MP3_PLAYER_INDEX), A2, 38, 47, radio);  // MP3 Player
+  objects[3] = Gadget(base.getAddressFromIndex(PHONE_INDEX), A3, 54, 60, radio);   // Phone
 
   Serial.begin(9600);
 
@@ -97,7 +99,7 @@ void loop() {
   }
   // Detect if Active object has been picked up
   else if (!objects[activeObjectIndex].isDetected() && !objects[activeObjectIndex].isPickedUp()) {
-    Serial.println("Active Object Picked Up");
+//    Serial.println("Active Object Picked Up");
     objects[activeObjectIndex].isPickedUp(true);
     objects[nextObjectIndex].isReady(true);
     setColours();
@@ -185,33 +187,33 @@ void loop() {
 }
 
 void setColours() {
-  Serial.println("about to start set colours");
+//  Serial.println("about to start set colours");
   base.startSetLED();
-  Serial.println("about to start set colours 2");
+//  Serial.println("about to start set colours 2");
   for (int i = 0; i < OBJECT_COUNT; i++) {
     if (objects[i].isDead()) base.setLEDcolour(objects[i].getLEDstart(), objects[i].getLEDend(), red);
     else if (objects[i].isActive()) base.setLEDcolour(objects[i].getLEDstart(), objects[i].getLEDend(), yellow);
     else if (objects[i].isReady()) base.setLEDcolour(objects[i].getLEDstart(), objects[i].getLEDend(), green);
           
-
-    Serial.println("---- OBJECT " + (String) i + "----");
-    Serial.print("start: ");
-    Serial.println(objects[i].getLEDstart());
-    Serial.print("end: ");
-    Serial.println(objects[i].getLEDend());
-    Serial.print("dead: ");
-    Serial.println(objects[i].isDead());
-    Serial.print("ready: ");
-    Serial.println(objects[i].isReady());
-    Serial.print("active: ");
-    Serial.println(objects[i].isActive());
-    Serial.print("picked up: ");
-    Serial.println(objects[i].isPickedUp());
+//
+//    Serial.println("---- OBJECT " + (String) i + "----");
+//    Serial.print("start: ");
+//    Serial.println(objects[i].getLEDstart());
+//    Serial.print("end: ");
+//    Serial.println(objects[i].getLEDend());
+//    Serial.print("dead: ");
+//    Serial.println(objects[i].isDead());
+//    Serial.print("ready: ");
+//    Serial.println(objects[i].isReady());
+//    Serial.print("active: ");
+//    Serial.println(objects[i].isActive());
+//    Serial.print("picked up: ");
+//    Serial.println(objects[i].isPickedUp());
 
     delay(50);
   }
-  Serial.println("about to start set colours 3");
+//  Serial.println("about to start set colours 3");
   base.endSetLED();
   delay(100);
-  Serial.println("about to start set colours 4");
+//  Serial.println("about to start set colours 4");
 }

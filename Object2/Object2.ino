@@ -34,7 +34,7 @@ void loop() {
 
   if (abs(abs(prevVolume) - abs(volume)) > 25) {
     //    Serial.println("cahnged enough");
-    transmit.send("vol", (int) map(volume, 350, 1023, 0, 100));
+    transmit.send("vol", (int) map(volume, 350, 1023, 100, 0));
     prevVolume = volume;
   }
 

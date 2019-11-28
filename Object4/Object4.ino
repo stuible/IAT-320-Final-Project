@@ -22,9 +22,10 @@ float prevY = 0;
 // Songs that user can switch between
 int songIndex = 0;
 String songs[] = {
-    "blink182 - I Miss U",
-    "Lil Pump - Gucci Gang",
-    "Oasis - Wonderwall"
+    "Comethazine - Walk",
+    "Juice Wrld - Lucid",
+    "Buy Spotify Premium",
+    "Desiigner - Panda"
     };
 
 bool completedActionY = false;
@@ -68,7 +69,7 @@ void loop() {
   if (currY >= 5 && prevY < 5 && !completedActionY)
   {
     
-    songIndex = songIndex < 2 ? songIndex +=1 : songIndex = 0;
+    songIndex = songIndex < 3 ? songIndex +=1 : songIndex = 0;
     display.setSong(songs[songIndex]);
     
 //    transmit.send("track", "next");
@@ -82,7 +83,7 @@ void loop() {
   // Only register action if this is the first gesture recognized
   if (currY >= -5 && prevY < -5 && !completedActionY)
   {
-    songIndex = songIndex > 0 ? songIndex -= 1 : songIndex = 2;
+    songIndex = songIndex > 0 ? songIndex -= 1 : songIndex = 3;
     display.setSong(songs[songIndex]);
     
     transmit.send("track", songIndex);
@@ -100,7 +101,7 @@ void loop() {
   {
 
     // Map X Axis of Acc to "Volume", multiple and then divide by 100 for more refined map
-    float volume = map(currX * 100, -8 * 100, 2 * 100, 0 * 100, 100 * 100) / 100;
+    float volume = constrain(map(currX * 100, -8 * 100, 2 * 100, 0 * 100, 100 * 100) / 100, 70, 100);
     transmit.send("vol", volume);
     display.setVolume(volume);
   }
