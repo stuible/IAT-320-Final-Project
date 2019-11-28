@@ -53,8 +53,8 @@ void loop() {
   // If active turn display on, if not, turn off
   if (transmit.isActive())
     display.on();
-  else
-    display.off();
+//  else
+//    display.off();
 
   // Get a new acc sensor event
   sensors_event_t event;

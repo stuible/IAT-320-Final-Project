@@ -18,9 +18,15 @@ void setupSound() {
 }
 
 void playSound() {
-  currentSound.play();
+  if (currentSound != null)   currentSound.play();
 }
 
 void stopSound() {
-  currentSound.stop();
+  if (currentSound != null) currentSound.stop();
+}
+
+void loadSound(SoundFile sound) {
+  stopSound();
+  currentSound = sound;
+  playSound();
 }

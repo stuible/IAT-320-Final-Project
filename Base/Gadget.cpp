@@ -4,10 +4,12 @@
 Gadget::Gadget() {}
 
 // Constructor
-Gadget::Gadget(int _radioAddress, int _detectorPin, RF24_G _radio) {
+Gadget::Gadget(int _radioAddress, int _detectorPin, int _LEDstartIndex, int _LEDendIndex, RF24_G _radio) {
   detectorPin = _detectorPin;
   radioAddress = _radioAddress;
   radio = _radio;
+  LEDstartIndex = _LEDstartIndex;
+  LEDendIndex = _LEDendIndex;
   transmit = Transmit(1, _radioAddress, _radio);
 }
 
@@ -32,13 +34,22 @@ int Gadget::getAddress() {
   return radioAddress;
 }
 
+bool Gadget::isReady() {
+  return ready;
+}
+
+bool Gadget::isReady(bool _ready) {
+  ready = _ready;
+  return isActive();
+}
+
 bool Gadget::isActive() {
   return active;
 }
 
 bool Gadget::isActive(bool _active) {
   active = _active;
-//  Serial.println("About to send active state over radio back to object");
+  //  Serial.println("About to send active state over radio back to object");
   send("active", _active);
   return isActive();
 }
@@ -60,4 +71,11 @@ bool Gadget::isPickedUp() {
 bool Gadget::isPickedUp(bool _pickedUp) {
   pickedUp = _pickedUp;
   return isPickedUp();
+}
+
+int Gadget::getLEDstart() {
+  return LEDstartIndex;
+}
+int Gadget::getLEDend() {
+  return LEDendIndex;
 }
