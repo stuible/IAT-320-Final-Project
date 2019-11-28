@@ -38,9 +38,9 @@ void setup() {
 
   // Instantiate Objects
   objects[0] = Gadget(base.getAddressFromIndex(OLD_SCHOOL_RADIO_INDEX), A0, 0, 23, radio);  // Old School Radio
-  objects[1] = Gadget(base.getAddressFromIndex(PORTABLE_RADIO_INDEX), A1, 24, 37, radio);  // Portable Radio
-  objects[2] = Gadget(base.getAddressFromIndex(MP3_PLAYER_INDEX), A2, 38, 47, radio);  // MP3 Player
-  objects[3] = Gadget(base.getAddressFromIndex(PHONE_INDEX), A3, 54, 60, radio);   // Phone
+  objects[1] = Gadget(base.getAddressFromIndex(PORTABLE_RADIO_INDEX), A1, 24, 34, radio);  // Portable Radio
+  objects[2] = Gadget(base.getAddressFromIndex(MP3_PLAYER_INDEX), A2, 35, 44, radio);  // MP3 Player
+  objects[3] = Gadget(base.getAddressFromIndex(PHONE_INDEX), A3, 51, 58, radio);   // Phone
 
   Serial.begin(9600);
 

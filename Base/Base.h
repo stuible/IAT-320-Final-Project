@@ -6,7 +6,7 @@
 class Base {
   private:
     const int LED_PIN = 3;
-    const int LED_COUNT = 40;
+    const int LED_COUNT = 59;
     Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
   public:
