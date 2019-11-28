@@ -17,12 +17,12 @@ int prevVolume = 0;
 void setup() {
   Serial.begin(9600);
 
-//  transmit = Transmit(objectChannel, baseChannel);
+  transmit = Transmit(objectChannel, baseChannel);
 
 
 }
 void loop() {
-//  transmit.receive();
+  transmit.receive();
 
   //  transmit.send("track", "next");
 
@@ -30,12 +30,12 @@ void loop() {
 
   if (abs(abs(prevVolume) - abs(volume)) > 25) {
     //    Serial.println("cahnged enough");
-//    transmit.send("vol", (int) map(volume, 350, 1023, 0, 100));
+    transmit.send("vol", (int) map(volume, 0, 1023, 100, 0));
     prevVolume = volume;
   }
 
-    Serial.print("volume: ");
-    Serial.println(volume);
+//    Serial.print("volume: ");
+//    Serial.println(volume);
 
   //    Serial.print("AM / FM: ");
   //    Serial.println(AMFM);
