@@ -9,7 +9,7 @@ void setupSerial() {
   try {
     //Open USB Serial Port
     printArray(Serial.list()); 
-    serial = new Serial(this, Serial.list()[13], 9600);
+    serial = new Serial(this, Serial.list()[15], 9600);
     println("OPENING PORT");
   }
   catch(Exception e) {
@@ -69,28 +69,54 @@ void updateSerial() {
               //  setVolume(((float) volObj));
               //}
               if (volObj instanceof String) {
-                //setVolume((Float)volObj);
+                String volCommand = (String) volObj;
+                
+                if (volCommand.equals("up")) {
+                  println("vol up");
+                  volumeUp();
+                }
+                if (volCommand.equals("down")) {
+                  println("vol down");
+                  volumeDown();
+                }
+                
               }
             }
 
             if (json.hasKey("track")) {
-              Object volObj = json.get("track");
-              if (volObj instanceof Number) {
-                int newSongIndex = (int) volObj;
+
+              Object trackObj = json.get("track");
+              if (trackObj instanceof Number) {
+                int newSongIndex = (int) trackObj;
                 if (activeObject == objects.get("phone")) {
                   setPhoneSong(newSongIndex);
                 }
               }
-              if (volObj instanceof String) {
-                //setVolume((Float)volObj);
+              
+              if (trackObj instanceof String) {
+
+                String trackCommand = (String) trackObj;
+
+                if (trackCommand.equals("next")) {
+                  println("next");
+                  nextmp3PlayerSong();
+                }
+                if (trackCommand.equals("prev")) {
+                  println("prev");
+                  prevmp3PlayerSong();
+                }
+                if (trackCommand.equals("pause")) {
+                  println("pause / play");
+                  playPausemp3Song();
+                }
+
               }
             }
-            
+
             if (json.hasKey("AM")) {
               boolean AM = json.getBoolean("AM");
-              if (AM) {
-  
-              }
+              if (AM) setPortableRadioAM();
+              else setPortableRadioFM();
             }
 
             if (json.hasKey("activeObject")) {

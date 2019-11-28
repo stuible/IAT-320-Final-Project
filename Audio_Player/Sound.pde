@@ -6,8 +6,12 @@ import processing.sound.*;
 
 SoundFile currentSound;
 
-void setVolume(float volume) {
-  currentSound.amp(volume / 100);
+float volume = 50;
+
+void setVolume(float _volume) {
+  currentSound.amp(_volume / 100);
+  volume = _volume;
+  
 }
 
 void setupSound() {
@@ -28,5 +32,21 @@ void stopSound() {
 void loadSound(SoundFile sound) {
   stopSound();
   currentSound = sound;
+  setVolume(volume);
   playSound();
+}
+
+void changeSound(SoundFile sound) {
+  if (currentSound != null) currentSound.amp(0);
+  currentSound = sound;
+  setVolume(volume);
+  if(!currentSound.isPlaying()) playSound();
+}
+
+void volumeUp(){
+setVolume(volume + 20);
+}
+
+void volumeDown(){
+setVolume(volume - 20);
 }
