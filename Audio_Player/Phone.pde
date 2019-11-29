@@ -1,7 +1,8 @@
 SoundFile[] phoneSongs;
-int currentPhoneSong = 0;
+int currentPhoneSong;
 
 void setupPhone() {
+  currentPhoneSong = 0;
   objects.put("phone", 3);
 
   phoneSongs = new SoundFile[4];

@@ -1,8 +1,9 @@
 SoundFile[] mp3PlayerSongs;
-int currentmp3PlayerSong = 1;
+int currentmp3PlayerSong;
 int songCount = 3;
 
 void setupMP3Player() {
+  currentmp3PlayerSong = 1;
   objects.put("MP3Player", 2);
 
   mp3PlayerSongs = new SoundFile[songCount];

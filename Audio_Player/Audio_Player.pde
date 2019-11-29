@@ -2,6 +2,8 @@ import java.util.Map;
 
 int activeObject = -1;
 
+int serialPort = 21;
+
 HashMap<String, Integer> objects = new HashMap<String, Integer>();
 
 void setup() {

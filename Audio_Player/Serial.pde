@@ -9,7 +9,7 @@ void setupSerial() {
   try {
     //Open USB Serial Port
     printArray(Serial.list()); 
-    serial = new Serial(this, Serial.list()[14], 9600);
+    serial = new Serial(this, Serial.list()[serialPort], 9600);
     println("OPENING PORT");
   }
   catch(Exception e) {
@@ -63,14 +63,21 @@ void updateSerial() {
             if (json.hasKey("vol")) {
               Object volObj = json.get("vol");
               if (volObj instanceof Number) {
-                setVolume(((Number)volObj).floatValue());
+
+                try {
+                  setVolume(((Number)volObj).floatValue());
+                }
+                catch(Exception e) {
+                  //  Block of code to handle errors
+                  println(e);
+                }
               }
               //if (volObj instanceof Integer) {
               //  setVolume(((float) volObj));
               //}
               if (volObj instanceof String) {
                 String volCommand = (String) volObj;
-                
+
                 if (volCommand.equals("up")) {
                   println("vol up");
                   volumeUp();
@@ -79,7 +86,6 @@ void updateSerial() {
                   println("vol down");
                   volumeDown();
                 }
-                
               }
             }
 
@@ -92,7 +98,7 @@ void updateSerial() {
                   setPhoneSong(newSongIndex);
                 }
               }
-              
+
               if (trackObj instanceof String) {
 
                 String trackCommand = (String) trackObj;
@@ -109,7 +115,6 @@ void updateSerial() {
                   println("pause / play");
                   playPausemp3Song();
                 }
-
               }
             }
 

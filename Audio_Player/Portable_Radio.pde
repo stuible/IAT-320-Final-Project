@@ -4,6 +4,7 @@ SoundFile radioSongFM;
 boolean portableRadioAM = true;
 
 void setupPortableRadio() {
+  portableRadioAM = true;
   objects.put("portableRadio", 1);
   
   //radioSongAM = new SoundFile(this, "surfinusa.mp3");
