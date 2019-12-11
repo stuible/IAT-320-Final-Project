@@ -1,5 +1,6 @@
 .DS_Store
 applet
+/testobject
 application.linux-arm64
 application.linux-armv6hf
 application.linux32
