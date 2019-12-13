@@ -6,7 +6,6 @@
 
 Code for Platform, Objects and Audio player
 
-----
 
 ## Code:
 - __`Base`__ Arduino code that handles main platform / base which the 4 audio players will rest on.  communicates with all 4 objects and with computer
