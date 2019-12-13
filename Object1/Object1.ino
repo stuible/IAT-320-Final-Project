@@ -1,5 +1,6 @@
-// Acc Libraries
-#include <ArduinoJson.h> //https://arduinojson.org/v6/example/parser/
+// Object 1 (Old School Radio)
+
+#include <ArduinoJson.h> // JSON Library: https://arduinojson.org/v6/example/parser/
 
 #include "Transmit.h"
 
@@ -12,7 +13,6 @@ const int volumePin = A0;
 
 int prevVolume = 0;
 
-//0 - 1020
 
 void setup() {
   Serial.begin(9600);
@@ -24,20 +24,13 @@ void setup() {
 void loop() {
   transmit.receive();
 
-  //  transmit.send("track", "next");
 
   int volume = analogRead(volumePin);
 
+  // Only tell the base about a volume change if it's changed more than 25
   if (abs(abs(prevVolume) - abs(volume)) > 25) {
-    //    Serial.println("cahnged enough");
     transmit.send("vol", (int) map(volume, 0, 1023, 100, 0));
     prevVolume = volume;
   }
-
-//    Serial.print("volume: ");
-//    Serial.println(volume);
-
-  //    Serial.print("AM / FM: ");
-  //    Serial.println(AMFM);
 
 }

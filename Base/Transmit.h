@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <rf24g.h>
-//#include <ArduinoJson.h> //https://arduinojson.org/v6/example/parser/
 
 class Transmit {
 
@@ -8,7 +7,6 @@ class Transmit {
     RF24_G radio;
     int channel;
     int destination;
-//    StaticJsonDocument<200> jsonBuffer;
 
   public:
     Transmit();

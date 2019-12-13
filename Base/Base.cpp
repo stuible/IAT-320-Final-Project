@@ -3,14 +3,9 @@
 void Base::begin() {
   
   strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
-//  strip.clear();
   strip.show();            // Turn OFF all pixels ASAP
   strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
 
-//    for (int i = 0; i < strip.numPixels(); i++) {
-//      strip.setPixelColor(i, strip.Color(127, 0, 127)); // Set pixel 'c' to value 'color'
-//    }
-//    strip.show();
 }
 
 int Base::getAddressFromIndex(int index) {
@@ -19,7 +14,7 @@ int Base::getAddressFromIndex(int index) {
 }
 
 void Base::update() {
-//  strip.clear();
+//  No behavior needed
 }
 
 void Base::startSetLED() {

@@ -1,6 +1,9 @@
+// Phone Helper Functions
+
 SoundFile[] phoneSongs;
 int currentPhoneSong;
 
+// Add object
 void setupPhone() {
   currentPhoneSong = 0;
   objects.put("phone", 3);

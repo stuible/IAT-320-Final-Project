@@ -1,5 +1,6 @@
 /* 
- Inspired by https://processing.org/reference/libraries/sound/SoundFile.html
+  Sound Helper Functions
+  Inspired by https://processing.org/reference/libraries/sound/SoundFile.html
  */
 
 import processing.sound.*;
@@ -15,8 +16,7 @@ void setVolume(float _volume) {
 }
 
 void setupSound() {
-
-  // Load a soundfile from the /data folder of the sketch and play it back
+  // Load a soundfile from the /data folder of the sketch and play it back [FOR TESTING ONLY]
   //currentSound = new SoundFile(this, "imissyou.mp3");
   //currentSound.play();
 }

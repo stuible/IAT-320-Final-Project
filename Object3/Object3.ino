@@ -1,6 +1,7 @@
-// Acc Libraries
-#include <ArduinoJson.h> //https://arduinojson.org/v6/example/parser/
-#include <Button.h>
+// Object 3 (MP3 Player)
+
+#include <ArduinoJson.h> // JSON Library: https://arduinojson.org/v6/example/parser/
+#include <Button.h> // Nice little library that handles debouncing (https://github.com/madleech/Button)
 
 #include "Transmit.h"
 
@@ -9,18 +10,13 @@ Transmit transmit;
 int objectChannel = 4;
 int baseChannel = 1;
 
+// Button objects of the 4 buttons
+Button prevTrack(3);
+Button nextTrack(1);
+Button volumeUp(12);
+Button volumeDown(6);
+Button pause(2);
 
-Button prevTrack(3); //Correct
-Button nextTrack(1); //Correct
-Button volumeUp(12); //Correct
-Button volumeDown(6); //Correct
-Button pause(2); //Correct
-
-//bool prevTrackPressed = false;
-//bool nextTrackPressed =  false;
-//bool volumeUpPressed = false;
-//bool volumeDownPressed = false;
-//bool pausePressed = false;
 
 void setup() {
   Serial.begin(9600);
@@ -60,19 +56,4 @@ void loop() {
     transmit.send("track", "pause");
   }
 
-
-  //  else  Serial.println("Prev Track Button state the same");
-
-  //  buttonDown(prevTrackPin);
-  //buttonDown(nextTrackPin);
-  //buttonDown(volumeUpPin);
-  //buttonDown(volumeDownPin);
-  //buttonDown(pausePin);
-
-}
-
-bool buttonDown(int pin) {
-  //  Serial.print("Pin " + (String) pin + ": ");
-  //  Serial.println(digitalRead(pin));
-  return digitalRead(pin);
 }

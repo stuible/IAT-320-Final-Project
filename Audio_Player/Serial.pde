@@ -1,3 +1,5 @@
+// Serial Helper Functions
+
 import processing.serial.*;
 
 Serial serial;
@@ -28,26 +30,7 @@ void updateSerial() {
       String inBuffer = serial.readString();   
       if (inBuffer != null) {
 
-        //if (inBuffer.contains("/*") || inBuffer.contains("*/")) {
-        //  int commentStart = inBuffer.indexOf("/*");
-        //  int commentEnd = inBuffer.indexOf("*/");
-
-        //  String inBufferFiltered = "";
-        //  if (commentStart != -1) {
-        //    inBufferFiltered += inBuffer.substring(0, commentStart);
-        //    ignoreSerial = true;
-        //  }
-        //  if (commentEnd != -1) {
-        //    inBufferFiltered += inBuffer.substring(commentEnd + 2, inBuffer.length());
-        //    ignoreSerial = false;
-        //  }
-        //  serialBuffer += inBufferFiltered;
-
-        //} else if (!ignoreSerial) {
-        //  serialBuffer += inBuffer;
-        //}
         serialBuffer += inBuffer;
-
 
         //Recived completed json object and can now process it
         if (serialBuffer.endsWith("\n")) {
@@ -60,8 +43,10 @@ void updateSerial() {
           } else {
             println(serialBuffer);
 
+            // If JSON has "vol" key, proccess the volume
             if (json.hasKey("vol")) {
               Object volObj = json.get("vol");
+              // If volume is number, set volume to that number
               if (volObj instanceof Number) {
 
                 try {
@@ -72,9 +57,7 @@ void updateSerial() {
                   println(e);
                 }
               }
-              //if (volObj instanceof Integer) {
-              //  setVolume(((float) volObj));
-              //}
+              // If volume is a string increase or decrease volume accordingly
               if (volObj instanceof String) {
                 String volCommand = (String) volObj;
 
@@ -89,8 +72,10 @@ void updateSerial() {
               }
             }
 
+            // If JSON has "track" key, process a song change
             if (json.hasKey("track")) {
 
+              // If track is a number, set the song the the index recieved from the phone object
               Object trackObj = json.get("track");
               if (trackObj instanceof Number) {
                 int newSongIndex = (int) trackObj;
@@ -99,6 +84,8 @@ void updateSerial() {
                 }
               }
 
+              // If track is a string, set the song the next or previous mp3 player track accordingly
+              // (or handle play / pause)
               if (trackObj instanceof String) {
 
                 String trackCommand = (String) trackObj;
@@ -118,12 +105,14 @@ void updateSerial() {
               }
             }
 
+            // If JSON has "AM" key then process the portable radios AM / FM status
             if (json.hasKey("AM")) {
               boolean AM = json.getBoolean("AM");
               if (AM) setPortableRadioAM();
               else setPortableRadioFM();
             }
 
+            //If JSON has "activeObject" key, switch the active object to recieved index
             if (json.hasKey("activeObject")) {
               changeObject(json.getInt("activeObject"));
               println("Active Object Changed to: " + activeObject);
@@ -146,7 +135,7 @@ void updateSerial() {
           //Reset buffer
           serialBuffer = "";
         } else {
-          //println("Buffer not ready:");
+          // Buffer not ready
         }
       }
     }

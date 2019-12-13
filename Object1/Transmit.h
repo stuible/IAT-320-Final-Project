@@ -25,5 +25,4 @@ class Transmit {
     void send(String key, String value);
     void send(String key, int value);
     void send(String key, float value);
-//    void send(String key, bool value);
 };

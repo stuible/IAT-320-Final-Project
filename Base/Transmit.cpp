@@ -43,7 +43,6 @@ void Transmit::sendRaw(String key, String value) {
   // print out the original payload
   // send the packet, if it is successful try to read back the packet
   if (radio.write(&sender) == true) {}
-//  Serial.print("*/");
 }
 
 void Transmit::send(String key, String value) {

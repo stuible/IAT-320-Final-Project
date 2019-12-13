@@ -1,10 +1,14 @@
+// Object 4 (Phone)
+
 // Acc Libraries
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_LSM303_U.h>
-#include <ArduinoJson.h> //https://arduinojson.org/v6/example/parser/
 
-#include "Transmit.h"
+// JSON Library: https://arduinojson.org/v6/example/parser/
+#include <ArduinoJson.h> 
+
+#include "Transmit.h" // Custom Transmit class
 #include "Display.h" // Custom Display class
 
 Transmit transmit;
